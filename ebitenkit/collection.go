@@ -7,7 +7,7 @@ import (
 	"image"
 	"image/color"
 
-	"github.com/gremour/gamekit/pkg/sprite"
+	"github.com/gremour/gamekit/sprite"
 	"github.com/hajimehoshi/ebiten/v2"
 	"github.com/hajimehoshi/ebiten/v2/ebitenutil"
 )
