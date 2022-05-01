@@ -32,9 +32,10 @@ type frame struct {
 // frame images.
 func NewCollection(col *sprite.Collection, logFunc func(msg string)) (*Collection, error) {
 	c := &Collection{
-		Collection: col,
-		frames:     make(map[string][]frame, len(col.Sprites)),
-		logFunc:    logFunc,
+		Collection:      col,
+		frames:          make(map[string][]frame, len(col.Sprites)),
+		logFunc:         logFunc,
+		reportedSprites: make(map[string]struct{}),
 	}
 	for _, fi := range col.Config.Files {
 		img, _, err := ebitenutil.NewImageFromFile(fi.Name)
