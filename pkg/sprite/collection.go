@@ -17,7 +17,7 @@ type Collection struct {
 
 // Config is the structure to store unmarshalled config.
 type Config struct {
-	Files []File `yaml:"files"`
+	Files []*File `yaml:"files"`
 }
 
 // File represents one sprite sheet file.
@@ -64,6 +64,9 @@ func NewCollectionFromFile(fileName string) (*Collection, error) {
 
 	for _, fi := range conf.Files {
 		for name, spr := range fi.Sprites {
+			if spr.FrameCount == 0 {
+				spr.FrameCount = 1
+			}
 			c.Sprites[name] = spr
 		}
 	}

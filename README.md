@@ -20,10 +20,10 @@ files:
       player-idle:     # sprite name
         width: 32      # width and height of the sprite
         height: 32
-        xoffset: 0     # offset of the sprite in the image
-        yoffset: 0
-        xorigin: 16    # origin of the sprite is at the
-        yorigin: 32    #   foot level
+        xOffset: 0     # offset of the sprite in the image
+        yOffset: 0
+        xOrigin: 16    # origin of the sprite is at the
+        yOrigin: 32    #   foot level
         frameCount: 2  # animation consists of 2 frames
         animFirst: 0   #   represented by a horizontal stripe 
         animLast: 1    #   of the same size frames
@@ -32,10 +32,10 @@ files:
       player-walk:
         width: 32
         height: 32
-        xoffset: 0
-        yoffset: 32    # note the offset: this sprite frames are on the second row in the image
-        xorigin: 16
-        yorigin: 32
+        xOffset: 0
+        yOffset: 32    # note the offset: this sprite frames are on the second row in the image
+        xOrigin: 16
+        yOrigin: 32
         frameCount: 8
         animFirst: 0
         animLast: 7
