@@ -87,6 +87,7 @@ func (c *Collection) Draw(dest *ebiten.Image, do *sprite.DrawOpts) {
 			}
 			c.reportedSprites[do.Name] = struct{}{}
 		}
+		return
 	}
 	var eo ebiten.DrawImageOptions
 	if do.Rotation != 0 {

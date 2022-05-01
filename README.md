@@ -24,9 +24,7 @@ files:
         yOffset: 0
         xOrigin: 16    # origin of the sprite is at the
         yOrigin: 32    #   foot level
-        frameCount: 2  # animation consists of 2 frames
-        animFirst: 0   #   represented by a horizontal stripe 
-        animLast: 1    #   of the same size frames
+        frameCount: 2  # animation consists of 2 frames represented by a horizontal stripe 
         animLoop: true # animation loops
         frameMS: 500   # uniform number of milliseconds for each frame
       player-walk:
@@ -37,8 +35,6 @@ files:
         xOrigin: 16
         yOrigin: 32
         frameCount: 8
-        animFirst: 0
-        animLast: 7
         animNext: player-idle # after animation ends, switch to the different animation
         frameMS: 100
   - name: sprites/terrain.png

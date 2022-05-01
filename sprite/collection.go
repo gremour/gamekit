@@ -39,8 +39,6 @@ type Sprite struct {
 	Width      int    `yaml:"width"`
 	Height     int    `yaml:"height"`
 	FrameCount int    `yaml:"frameCount"`
-	AnimFirst  int    `yaml:"animFirst"`
-	AnimLast   int    `yaml:"animLast"`
 	AnimLoop   bool   `yaml:"animLoop"`
 	AnimNext   string `yaml:"animNext"`
 	FrameMS    int    `yaml:"frameMS"`
@@ -67,18 +65,17 @@ func NewCollectionFromFile(fileName string) (*Collection, error) {
 		return nil, err
 	}
 
-	conf := Config{}
-	err = yaml.Unmarshal(payload, &conf)
+	c := &Collection{
+		Sprites: make(map[string]*Sprite),
+	}
+	err = yaml.Unmarshal(payload, &c.Config)
 	if err != nil {
 		return nil, err
 	}
 
-	c := &Collection{
-		Sprites: make(map[string]*Sprite),
-	}
-
-	for _, fi := range conf.Files {
+	for _, fi := range c.Config.Files {
 		for name, spr := range fi.Sprites {
+			spr.Name = name
 			if spr.FrameCount == 0 {
 				spr.FrameCount = 1
 			}

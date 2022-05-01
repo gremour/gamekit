@@ -1,0 +1,23 @@
+files:
+  - name: sprites/ball.png
+    sprites:
+      idle:
+        width: 32
+        height: 32
+        xOffset: 0
+        yOffset: 0
+        xOrigin: 16
+        yOrigin: 32
+        frameCount: 2
+        animLoop: true
+        frameMS: 500
+      jump:
+        width: 32
+        height: 32
+        xOffset: 0
+        yOffset: 32
+        xOrigin: 16
+        yOrigin: 32
+        frameCount: 4
+        animNext: idle
+        frameMS: 100
