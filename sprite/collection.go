@@ -3,6 +3,7 @@
 package sprite
 
 import (
+	"image/color"
 	"io/ioutil"
 
 	"gopkg.in/yaml.v2"
@@ -43,6 +44,20 @@ type Sprite struct {
 	AnimLoop   bool   `yaml:"animLoop"`
 	AnimNext   string `yaml:"animNext"`
 	FrameMS    int    `yaml:"frameMS"`
+}
+
+// DrawOpts contains options for drawing sprite.
+// Name is mandatory. Other fields can be left empty.
+type DrawOpts struct {
+	Name   string
+	Frame  int
+	X      float64
+	Y      float64
+	ScaleX float64
+	ScaleY float64
+	// Rotation angle in radians.
+	Rotation float64
+	Color    color.Color
 }
 
 // NewCollectionFromFile creates sprite collection from yaml configuration file.

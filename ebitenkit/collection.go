@@ -5,7 +5,7 @@ package ebitenkit
 import (
 	"fmt"
 	"image"
-	"image/color"
+	_ "image/png"
 
 	"github.com/gremour/gamekit/sprite"
 	"github.com/hajimehoshi/ebiten/v2"
@@ -75,23 +75,9 @@ func (c *Collection) FrameImage(name string, frame int) (*ebiten.Image, float64,
 	return f.image, f.xOrigin, f.yOrigin
 }
 
-// DrawOpts contains options for drawing sprite.
-// Name is mandatory. Other fields can be left empty.
-type DrawOpts struct {
-	Name   string
-	Frame  int
-	X      float64
-	Y      float64
-	ScaleX float64
-	ScaleY float64
-	// Rotation angle in radians.
-	Rotation float64
-	Color    color.Color
-}
-
 // Draw draws the sprite frame on dest image with given offset,
 // scale and rotation.
-func (c *Collection) Draw(dest *ebiten.Image, do *DrawOpts) {
+func (c *Collection) Draw(dest *ebiten.Image, do *sprite.DrawOpts) {
 	im, ox, oy := c.FrameImage(do.Name, do.Frame)
 	if im == nil {
 		if _, ok := c.reportedSprites[do.Name]; !ok {
