@@ -10,7 +10,7 @@ files:
         yOrigin: 32
         frameCount: 2
         animLoop: true
-        frameMS: 500
+        frameMS: 1000
       jump:
         width: 32
         height: 32
@@ -20,4 +20,4 @@ files:
         yOrigin: 32
         frameCount: 4
         animNext: idle
-        frameMS: 100
+        frameMS: 300
