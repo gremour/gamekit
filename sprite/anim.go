@@ -24,7 +24,7 @@ func NewAnim(col *Collection, name string, reverse bool) *Anim {
 		collection: col,
 		reverse:    reverse,
 	}
-	ok := a.fromSprite(name)
+	ok := a.FromSprite(name)
 	if !ok {
 		return nil
 	}
@@ -32,7 +32,7 @@ func NewAnim(col *Collection, name string, reverse bool) *Anim {
 }
 
 // fromSprite sets up current animation based on sprite name from collection.
-func (a *Anim) fromSprite(name string) bool {
+func (a *Anim) FromSprite(name string) bool {
 	spr, ok := a.collection.Sprites[name]
 	if !ok {
 		return false
@@ -58,7 +58,7 @@ func (a *Anim) Progress(dt float64) {
 				a.frameCurrent = 0
 			} else {
 				if a.next != "" {
-					a.fromSprite(a.next)
+					a.FromSprite(a.next)
 				}
 				return
 			}
