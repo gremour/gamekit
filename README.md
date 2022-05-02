@@ -6,10 +6,11 @@ A collection of utility packages for making games in Go.
 **Sprite** can consist of several frames and contain properties for animation.
 **Anim** is another structure that tracks changing of sprite frames.
 Collection is initialized from the yaml configuration file (see below).
-This is pure logical package without dependency on any specific graphics library.
+This is pure logical package without dependency on any specific graphics library;
 - `ebitenkit` package contains [ebiten](https://github.com/hajimehoshi/ebiten) 
 specific collection of sprites that stores images and can draw them on an
-ebiten image.
+ebiten image;
+- `geo` package contains structures and function for `float64` geometry calculations.
 
 ## Configuration file example
 
