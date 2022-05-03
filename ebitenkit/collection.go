@@ -26,6 +26,8 @@ type frame struct {
 	image   *ebiten.Image
 	xOrigin float64
 	yOrigin float64
+	width   float64
+	height  float64
 }
 
 // NewCollection creates new collection, initializing
@@ -52,7 +54,9 @@ func NewCollection(col *sprite.Collection, logFunc func(msg string)) (*Collectio
 						spr.XOffset+spr.Width*(i+1),
 						spr.YOffset+spr.Height)).(*ebiten.Image),
 					xOrigin: float64(spr.XOrigin),
-					yOrigin: float64(spr.XOrigin),
+					yOrigin: float64(spr.YOrigin),
+					width:   float64(spr.Width),
+					height:  float64(spr.Height),
 				}
 				frames = append(frames, frm)
 			}
@@ -67,19 +71,20 @@ func NewCollection(col *sprite.Collection, logFunc func(msg string)) (*Collectio
 // May return nil if such sprite is not in collection or frame number
 // is invalid.
 // Also retuerns sprite origins.
-func (c *Collection) FrameImage(name string, frame int) (*ebiten.Image, float64, float64) {
+func (c *Collection) FrameImage(name string, frame int) (*ebiten.Image, float64, float64, float64, float64) {
 	fs := c.frames[name]
 	if frame < 0 || frame >= len(fs) {
-		return nil, 0, 0
+		return nil, 0, 0, 0, 0
 	}
 	f := fs[frame]
-	return f.image, f.xOrigin, f.yOrigin
+	return f.image, f.xOrigin, f.yOrigin, f.width, f.height
 }
 
 // Draw draws the sprite frame on dest image with given offset,
 // scale and rotation.
 func (c *Collection) Draw(dest *ebiten.Image, do *sprite.DrawOpts) {
-	im, ox, oy := c.FrameImage(do.Name, do.Frame)
+	im, ox, oy, w, h := c.FrameImage(do.Name, do.Frame)
+	_, _ = w, h
 	if im == nil {
 		if _, ok := c.reportedSprites[do.Name]; !ok {
 			if c.logFunc != nil {
@@ -89,16 +94,39 @@ func (c *Collection) Draw(dest *ebiten.Image, do *sprite.DrawOpts) {
 		}
 		return
 	}
+
 	var eo ebiten.DrawImageOptions
+
+	if do.ScaleX == 0 {
+		do.ScaleX = 1
+	}
+	if do.ScaleY == 0 {
+		do.ScaleY = 1
+	}
+	if do.ScaleX != 1 || do.ScaleY != 1 {
+		eo.GeoM.Scale(do.ScaleX, do.ScaleY)
+	}
+	if do.ScaleX < 0 {
+		ox = (w - ox) * do.ScaleX
+	} else {
+		ox = ox * do.ScaleX
+	}
+	if do.ScaleY < 0 {
+		oy = (h - oy) * do.ScaleY
+	} else {
+		oy = oy * do.ScaleY
+	}
+
+	eo.GeoM.Translate(-ox, -oy)
+
 	if do.Rotation != 0 {
 		eo.GeoM.Rotate(do.Rotation)
 	}
-	if do.ScaleX != 0 && do.ScaleY != 0 {
-		eo.GeoM.Scale(do.ScaleX, do.ScaleY)
-	}
-	eo.GeoM.Translate(do.X-ox, do.Y-oy)
+
+	eo.GeoM.Translate(do.X, do.Y)
+
 	if do.Color != nil {
-		eo.ColorM.Apply(do.Color)
+		eo.ColorM.ScaleWithColor(do.Color)
 	}
 	dest.DrawImage(im, &eo)
 }
