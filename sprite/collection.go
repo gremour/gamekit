@@ -18,30 +18,30 @@ type Collection struct {
 
 // Config is the structure to store unmarshalled config.
 type Config struct {
-	Files []*File `yaml:"files"`
+	Files []*File `yaml:"files,omitempty"`
 }
 
 // File represents one sprite sheet file.
 type File struct {
 	Name    string
-	Sprites map[string]*Sprite `yaml:"sprites"`
+	Sprites map[string]*Sprite `yaml:"sprites,omitempty"`
 }
 
 // Sprite contains information about position and size of
 // sprite in the sheet, it's origin point and animation properties.
 // Sprite can contain several frames.
 type Sprite struct {
-	Name       string
-	XOffset    int    `yaml:"xOffset"`
-	YOffset    int    `yaml:"yOffset"`
-	XOrigin    int    `yaml:"xOrigin"`
-	YOrigin    int    `yaml:"yOrigin"`
-	Width      int    `yaml:"width"`
-	Height     int    `yaml:"height"`
-	FrameCount int    `yaml:"frameCount"`
-	AnimLoop   bool   `yaml:"animLoop"`
-	AnimNext   string `yaml:"animNext"`
-	FrameMS    int    `yaml:"frameMS"`
+	Name       string `yaml:"-"`
+	XOffset    int    `yaml:"xOffset,omitempty"`
+	YOffset    int    `yaml:"yOffset,omitempty"`
+	XOrigin    int    `yaml:"xOrigin,omitempty"`
+	YOrigin    int    `yaml:"yOrigin,omitempty"`
+	Width      int    `yaml:"width,omitempty"`
+	Height     int    `yaml:"height,omitempty"`
+	FrameCount int    `yaml:"frameCount,omitempty"`
+	AnimLoop   bool   `yaml:"animLoop,omitempty"`
+	AnimNext   string `yaml:"animNext,omitempty"`
+	FrameMS    int    `yaml:"frameMS,omitempty"`
 }
 
 // DrawOpts contains options for drawing sprite.

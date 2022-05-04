@@ -1,0 +1,33 @@
+name: sprites.yaml
+sheets:
+- name: player.png    # required
+  width: 1024         # default 1024
+  uniformDelayMS: 100 # default 100
+  files:
+  - name: player-idle.png
+    xOrigin: 16   # default 0
+    yOrigin: 32   # default 0
+    frameCount: 6 # defaults to square sprites
+    frameMS: 100  # defaults to sheets.uniformDelayMS
+    animLoop:     # default false
+    animNext:     # default ""
+  - name: player-walk.png
+    xOrigin: 16
+    yOrigin: 32
+    frameCount: 6
+    animLoop: true
+embeds: # these sprite sheets are added as is to the resulting config file
+- name: terrain.png
+  sprites:
+    dirt:
+      width: 32
+      height: 32
+      xOffset: 0
+      yOffset: 0
+      frameCount: 10
+    grass:
+      width: 32
+      height: 32
+      xOffset: 0
+      yOffset: 32
+      frameCount: 10

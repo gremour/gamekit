@@ -1,6 +1,9 @@
 # gamekit
 
-A collection of utility packages for making games in Go.
+A collection of utility packages for making games in the awesome Go programming language.
+
+I've created this library to help develop my pet game using [ebiten](https://github.com/hajimehoshi/ebiten)
+graphics library. And I'm sharing this in hope it can be useful.
 
 - `sprite` package contains implemenation of sprite collection.
 **Sprite** can consist of several frames and contain properties for animation.
@@ -10,9 +13,19 @@ This is pure logical package without dependency on any specific graphics library
 - `ebitenkit` package contains [ebiten](https://github.com/hajimehoshi/ebiten) 
 specific collection of sprites that stores images and can draw them on an
 ebiten image;
-- `geo` package contains structures and function for `float64` geometry calculations.
+- `geo` package contains structures and function for `float64` geometry calculations;
+- `sheetmaker` package implements a tool that produces sprite sheet (both `png` file
+and `yaml` config file) from a number of `png` files; configuration file is used to
+describe files and desired sheet properties. Run `go run ./sheetmaker` to get help.
 
 ## Configuration file example
+
+This file can be created automatically (along with sprite sheets) by `sheetmaker` by combining multiple
+`png` files containing sprites, which are the horizontal stripes of sprite frames,
+as exported from the sprite editor, such as **Aseprite**.
+
+Run `go run ./sheetmaker` for the usage help. Run `go install ./sheetmaker` to
+install sheetmaker binary to your `$GOBIN` path.
 
 ```yaml
 files:
@@ -47,3 +60,9 @@ files:
         yoffset: 0
         frameCount: 8 # grass variations instead of animation frames
 ```
+
+# Contribution
+
+Ideas, contributions and criticisms are welcome.
+
+Please open an issue for an idea/criticism or a pull request for a contribution.
