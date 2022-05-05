@@ -5,7 +5,7 @@ A collection of utility packages for making games in the awesome Go programming 
 I've created this library to help develop my pet game using [ebiten](https://github.com/hajimehoshi/ebiten)
 graphics library. And I'm sharing this in hope it can be useful.
 
-- `sprite` package contains implemenation of sprite collection.
+- `sprite` package contains implementation of sprite collection.
 **Sprite** can consist of several frames and contain properties for animation.
 **Anim** is another structure that tracks changing of sprite frames.
 Collection is initialized from the yaml configuration file (see below).
@@ -13,7 +13,7 @@ This is pure logical package without dependency on any specific graphics library
 - `ebitenkit` package contains [ebiten](https://github.com/hajimehoshi/ebiten) 
 specific collection of sprites that stores images and can draw them on an
 ebiten image;
-- `geo` package contains structures and function for `float64` geometry calculations;
+- `geo` package contains structures and functions for `float64` geometry calculations;
 - `sheetmaker` package implements a tool that produces sprite sheet (both `png` file
 and `yaml` config file) from a number of `png` files; configuration file is used to
 describe files and desired sheet properties. Run `go run ./sheetmaker` to get help.
@@ -36,8 +36,8 @@ files:
         height: 32
         xOffset: 0     # offset of the sprite in the image
         yOffset: 0
-        xOrigin: 16    # origin of the sprite is at the
-        yOrigin: 32    #   foot level
+        xOrigin: 16    # origin of the sprite is at the foot level
+        yOrigin: 32
         frameCount: 2  # animation consists of 2 frames represented by a horizontal stripe 
         animLoop: true # animation loops
         frameMS: 500   # uniform number of milliseconds for each frame

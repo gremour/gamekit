@@ -45,3 +45,12 @@ func (v Vector2) Angle(o Vector2) float64 {
 	}
 	return a
 }
+
+func (v Vector2) Rotated(angle float64) Vector2 {
+	sina := math.Sin(angle)
+	cosa := math.Cos(angle)
+	return Vector2{
+		X: v.X*cosa - v.Y*sina,
+		Y: v.X*sina + v.Y*cosa,
+	}
+}
