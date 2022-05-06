@@ -54,3 +54,7 @@ func (v Vector2) Rotated(angle float64) Vector2 {
 		Y: v.X*sina + v.Y*cosa,
 	}
 }
+
+func (v Vector2) Module() float64 {
+	return math.Sqrt(v.X*v.X + v.Y*v.Y)
+}
